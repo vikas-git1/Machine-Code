@@ -1,5 +1,3 @@
-//! Basics & Core Operations
-
 // 1.Find the smallest number in an array
 const findSmallestNum = (arr) => {
   let smallestNum = arr[0];
@@ -27,12 +25,15 @@ const arr2 = [214, 781, 9, 527, 10, 266, 999, -1893, 89];
 // console.log(findLargestNum(arr2));
 
 // 3.Find second smallest and second largest.
-const findSecondSmallestNum = (arr) => {
-  let sortedArr = arr.sort((a, b) => a - b);
-  return `The second smallest number in array is: ${sortedArr[1]}`;
+const findSecondSmallestAndLargestNum = (arr) => {
+  let sortedArr = [...new Set(arr)].sort((a, b) => a - b);
+  return {
+    SecondLargestNum: sortedArr.at(-2),
+    SeconcSmallestNum: sortedArr[1],
+  };
 };
-const arr3 = [21, 781, 90, 527, 100, 266, 999, -1893, 89];
-//console.log(findSecondSmallestNum(arr3));
+const arr3 = [2, 21, 781, 90, 527, 100, 266, 999, 2, 89];
+// console.log(findSecondSmallestAndLargestNum(arr3));
 
 // 4.Reverse a given array.
 const reverseArray = (arr) => {
@@ -115,14 +116,181 @@ const addElsAtPostion = (arr, position, el) => {
   return finalArr;
 };
 const arr9 = ["Madhur", "Shubham", "Vikas"];
-console.log(addElsAtPostion(arr9, 2, "Rajeev"));
+// console.log(addElsAtPostion(arr9, 2, "Rajeev"));
 
 // 10.Search for an element in the array
-const searchElInArr = (arr, el) => {
-  let found = arr.find((element) => element === el);
-  return found
+const searchElInArr = (arr, el) =>
+  arr.includes(el)
     ? `The ${el} is present in the given Array`
     : `The ${el} is not found in the given Array`;
-};
+
 const arr10 = ["apple", "banana", "orange", "guava", "cherry"];
-console.log(searchElInArr(arr10, "banana"));
+// console.log(searchElInArr(arr10, "orange"));
+
+// 11.Count frequency of each element
+const countFrequencyOfEls = (arr) => {
+  let frequency = {};
+  for (let el of arr) {
+    frequency[el] = (frequency[el] || 0) + 1;
+  }
+  return frequency;
+};
+const arr11 = [12, 25, 78, 23, 12, 25, 25, 250, 78, 25];
+// console.log(countFrequencyOfEls(arr11));
+
+// 12.Remove duplicates from a sorted array.
+const removeDuplicates = (arr) => {
+  let sortedArr = [...arr].sort((a, b) => a - b);
+  let uniqueArr = [];
+  for (let el of sortedArr) {
+    if (!uniqueArr.includes(el)) {
+      uniqueArr.push(el);
+    }
+  }
+  return uniqueArr;
+};
+const arr12 = [12, 25, 78, 23, 12, 25, 25, 250, 78, 25];
+// console.log(removeDuplicates(arr12));
+
+// 13.Check if Array is Sorted
+function checkSorted(arr) {
+  let asc = true,
+    desc = true;
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] > arr[i + 1]) asc = false;
+    if (arr[i] < arr[i + 1]) desc = false;
+  }
+
+  if (asc) return "Array is sorted in ascending order";
+  if (desc) return "Array is sorted in descending order";
+  return "Array is not sorted";
+}
+const arr13 = [12, 18, 23, 78, 100];
+// console.log(checkSorted(arr13));
+
+// 14.Find all repeating elements
+const findRepeatingEls = (arr) => {
+  let result = [];
+  let freq = {};
+  for (let el of arr) {
+    freq[el] = (freq[el] || 0) + 1;
+  }
+  for (let key in freq) {
+    if (freq[key] > 1) {
+      result.push(Number(key));
+    }
+  }
+  return result;
+};
+const arr14 = [12, 100, 23, 89, 18, 18, 23, 78, 100];
+// console.log(findRepeatingEls(arr14));
+
+// 15.Find all non-repeating elements
+const findNonRepeatingEls = (arr) => {
+  let result = [];
+  let freq = {};
+  for (let el of arr) {
+    freq[el] = (freq[el] || 0) + 1;
+  }
+
+  for (let key in freq) {
+    if (freq[key] === 1) {
+      result.push(Number(key));
+    }
+  }
+  return result;
+};
+const arr15 = [12, 100, 23, 89, 18, 18, 23, 78, 100];
+// console.log(findNonRepeatingEls(arr15));
+
+// 16.Sort array by frequency
+const sortArrayByFreq = (arr) => {};
+const arr16 = [12, 100, 23, 89, 18, 18, 23, 78, 100, 8];
+// console.log(sortArrayByFreq(arr16));
+
+//17.Sort an array without built-in methods
+const sortArrWithoutBuiltIn = (arr) => {};
+const arr17 = [67, 34, 87, 10, 8, 765, 100];
+// console.log(sortArrWithoutBuiltIn(arr17));
+
+//18.Rearrange array in increasing-decreasing order
+const rearrangeInIncDecOrder = (arr) => {
+  let sortedArr = [...arr].sort((a, b) => a - b);
+  let mid = Math.floor(sortedArr.length / 2);
+  let firstHalf = sortedArr.slice(0, mid);
+  let secondHalf = sortedArr.slice(mid).reverse();
+  return [...firstHalf, ...secondHalf];
+};
+const arr18 = [2, 8, 5, 7, 1, 9, 3, 6, 4];
+// console.log(rearrangeInIncDecOrder(arr18));
+
+//19.Replace each element by its rank
+const replaceElsByRank = (arr) => {
+  let sortedArr = [...new Set(arr)].sort((a, b) => a - b);
+  let rank = {};
+  sortedArr.forEach((num, index) => {
+    rank[num] = index + 1;
+  });
+  return arr.map((num) => rank[num]);
+};
+const arr19 = [10, 70, 90, 10, 20, 50, 100, 20];
+// console.log(replaceElsByRank(arr19));
+
+//20.Check if an array is a subset of another
+const checkSubsetOfArr = (arr1, arr2) => {
+  for (let el of arr2) {
+    if (!arr1.includes(el)) {
+      return false;
+    }
+  }
+  return true;
+};
+const arr20A = [10, 70, 90, 10, 11, 20, 50, 100, 20];
+const arr20B = [50, 100, 21];
+// console.log(checkSubsetOfArr(arr20A, arr20B));
+
+//22.Equilibrium index in an array
+const findEquilibriumIndex = (arr) => {
+  let totalSum = arr.reduce((sum, num) => sum + num, 0);
+  let leftSum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let rightSum = totalSum - leftSum - arr[i];
+    if (leftSum === rightSum) return i;
+    leftSum += arr[i];
+  }
+  return -1;
+};
+const arr22 = [2, 10, 22, 6, 3, 7, 100, 30, 20];
+// console.log(findEquilibriumIndex(arr22));
+
+//23.Circular rotation of array by K
+const circularRotationByK = (arr, K) => {
+  K = K % arr.length;
+  for (let i = 0; i < K; i++) {
+    let removedEl = arr.pop();
+    arr.unshift(removedEl);
+  }
+  return arr;
+};
+const arr23 = [2, 10, 22, 6, 3, 7, 100, 30, 20];
+// console.log(circularRotationByK(arr23, 8));
+
+// ❖ Kadane’s Algorithm (Max subarray sum) – Must-know.
+// ❖ Move all zeroes to the end (without changing order) – Simple but tricky.
+const moveZeroesToEnd = (arr) => {
+  for (let el of arr) {
+    if (el === 0) {
+      arr.push(el);
+    }
+  }
+  return arr;
+};
+const arr24 = [10, 0, 23, 9, 0, 212, 82, 0, 74];
+console.log(moveZeroesToEnd(arr24));
+
+// ❖ Find the missing number from 1 to N – Asked in Aptitude + Coding rounds.
+// ❖ Find union and intersection of 2 arrays – Common in set-based problems.
+// ❖ Check if two arrays are equal – Logical implementation-focused.
+// ❖ Find peak element – Very common in binary search-based rounds.
+// ❖ Count pairs with given sum – Hashmap based, frequently asked.
