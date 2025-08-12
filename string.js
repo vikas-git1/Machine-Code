@@ -1,21 +1,222 @@
 //! A. Very Frequently Asked (Must Know)
 
-//     Reverse a string.
+//1.Reverse a string.
+const reverseString = (str) => str.split("").reverse().join("");
+const str1 = "Vikas";
+// console.log(reverseString(str1));
 
-//     Check if a string is a palindrome.
+//2.Check if a string is a palindrome.
+const isPalindrome = (str) => {
+  let newStr = str.split("").reverse().join("");
+  return str === newStr
+    ? `Yes, ${str} is Palindrome`
+    : `No, ${str} is not Palindrome`;
+};
+const str2 = "madam";
+// console.log(isPalindrome(str2));
 
-//     Count vowels and consonants in a string.
+//3.Count vowels and consonants in a string.
+function countViwelsConsonants(str) {
+  let targetStr = str.toLowerCase().trim();
+  let vowelsCount = 0;
+  let consonantsCount = 0;
+  let spaceCount = 0;
+  let vowels = "aeiou";
+  for (let char of targetStr) {
+    if (vowels.includes(char)) {
+      vowelsCount++;
+    } else if (char >= "a" && char <= "z") {
+      consonantsCount++;
+    } else if (char === " ") {
+      spaceCount++;
+    }
+  }
+  return {
+    Vowels: vowelsCount,
+    Consonants: consonantsCount,
+    Spaces: spaceCount++,
+  };
+}
+const str3 = "Rama khe d i";
+// console.log(countViwelsConsonants(str3));
 
-//     Count the occurrence of each character in a string.
+//4.Count the occurrence of each character in a string.
+const countOccurrenceOfChar = function (str) {
+  let freq = {};
+  let targetStr = str.toLowerCase().replace(/\s+/g, "");
+  for (let el of targetStr) {
+    freq[el] = (freq[el] || 0) + 1;
+  }
+  return freq;
+};
+const str4 = "Information Technology";
+// console.log(countOccurrenceOfChar(str4));
 
-//     Remove duplicate characters from a string.
+//5.Remove duplicate characters from a string.
+const removeDuplicates = (str) => {
+  let result = "";
+  for (let char of str) {
+    if (!result.includes(char)) {
+      result += char;
+    }
+  }
+  return result;
+};
+const str5 = "ViikkkaVski";
+// console.log(removeDuplicates(str5));
 
-//     Find the first non-repeating character in a string.
+//6.Find the first non-repeating character in a string.
+const findNonRepeatingChars = (str) => {
+  let freq = {};
+  for (let char of str) {
+    freq[char] = (freq[char] || 0) + 1;
+  }
+  for (let char of str) {
+    if (freq[char] === 1) {
+      return char;
+    }
+  }
+  return "There are no non-repeating characters in this string";
+};
+const str6 = "azibdklablzidk";
+// console.log(findNonRepeatingChars(str6));
 
-//     Check if two strings are anagrams.
+//7.Check if two strings are anagrams.
+const checkAnagrams = (str1, str2) => {
+  let str1Sort = str1.toLowerCase().split("").sort().join("");
+  let str2Sort = str2.toLowerCase().split("").sort().join("");
+  return str1Sort === str2Sort;
+};
+let str7a = "Vikas";
+let str7b = "skiav";
+// console.log(checkAnagrams(str7a, str7b));
 
-//     Change the case of each character (uppercase ↔ lowercase).
+//8.Change the case of each character (uppercase ↔ lowercase).
+const changeCaseOfChar = (str) => {
+  let result = "";
+  for (let char of str) {
+    if (char === char.toLowerCase()) {
+      result += char.toUpperCase();
+    } else {
+      result += char.toLowerCase();
+    }
+  }
+  return result;
+};
+const str8 = "prAksah";
+// console.log(changeCaseOfChar(str8));
 
-//     Find the longest word in a sentence.
+//9.Find the longest word in a sentence.
+const findLongestWord = (str) => {
+  let strArr = str.split(" ");
+  let result = strArr[0];
+  for (let word of strArr) {
+    if (result.length < word.length) {
+      result = word;
+    }
+  }
+  return result;
+};
+const str9 = "Hi, I am a Web Developer";
+// console.log(findLongestWord(str9));
 
-//     Check if a string contains only digits.
+//10.Check if a string contains only digits.
+const checkStrContainsDigit = (str) => {
+  for (let char of str) {
+    if ("0" >= char || "9" <= char) {
+      return false;
+    }
+  }
+  return true;
+};
+
+const str10 = "725";
+console.log(checkStrContainsDigit(str10));
+
+//! B. Frequently Asked (Common in Rounds 1 & 2)
+
+//     Count the number of words in a string.
+
+//     Reverse the words in a sentence.
+
+//     Check if a string contains a substring.
+
+//     Replace all spaces in a string with - (or %20).
+
+//     Find the frequency of a given character in a string.
+
+//     Check if two strings are rotations of each other.
+
+//     Remove all white spaces from a string.
+
+//     Capitalize the first letter of each word in a sentence.
+
+//     Find the largest and smallest word in a string.
+
+//     Count uppercase, lowercase, digits, and special characters.
+
+// C. Moderately Common (Asked in Logical Rounds)
+
+//     Check if a string is a pangram (contains all letters of the alphabet).
+
+//     Count the number of special characters in a string.
+
+//     Find the ASCII value of each character in a string.
+
+//     Find the most frequent character in a string.
+
+//     Remove characters from the first string which are present in the second string.
+
+//     Check if a string is made of repeated substrings (e.g., "abab").
+
+//     Find the index of the first occurrence of a substring.
+
+//     Count the frequency of each word in a sentence.
+
+//     Remove all occurrences of a given character from a string.
+
+//     Convert a string to a number (without parseInt / Number).
+
+// D. Less Common but Good to Know
+
+//     Find all permutations of a string.
+
+//     Find all subsequences of a string.
+
+//     Implement String.prototype.split() without using split().
+
+//     Implement String.prototype.replaceAll() without using it.
+
+//     Find the longest common prefix among an array of strings.
+
+//     Implement your own version of indexOf.
+
+//     Find the longest palindromic substring.
+
+//     Find the second most frequent character in a string.
+
+//     Check if a string can be rearranged to form a palindrome.
+
+//     Encode and decode a string using run-length encoding.
+
+// E. Advanced / Rare but Possible
+
+//     Implement string compression (e.g., "aaabb" → "a3b2").
+
+//     Group anagrams from an array of strings.
+
+//     Find the smallest window in a string containing all characters of another string.
+
+//     Find all starting indices of anagrams of a pattern in a string.
+
+//     Check if a string is a valid palindrome ignoring non-alphanumeric characters.
+
+//     Check if a string is a subsequence of another string.
+
+//     Find the edit distance (Levenshtein distance) between two strings.
+
+//     Implement your own version of startsWith and endsWith.
+
+//     Find the minimum number of flips to make a binary string alternate.
+
+//     Rotate characters of a string (left or right rotation).
