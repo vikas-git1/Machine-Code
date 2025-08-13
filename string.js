@@ -129,31 +129,117 @@ const checkStrContainsDigit = (str) => {
   }
   return true;
 };
-
 const str10 = "725";
-console.log(checkStrContainsDigit(str10));
+// console.log(checkStrContainsDigit(str10));
 
 //! B. Frequently Asked (Common in Rounds 1 & 2)
 
-//     Count the number of words in a string.
+//11. Count the number of words in a string.
+const countWordsInStr = (str) => str.split(" ").length;
+const str11 = "Hellow Guyz, How are You?";
+// console.log(countWordsInStr(str11));
 
 //     Reverse the words in a sentence.
+const reverseWordsInStr = (str) => str.split(" ").reverse().join(" ");
+const str12 = "India MP Sehore Ramakhedi";
+// console.log(reverseWordsInStr(str12));
 
-//     Check if a string contains a substring.
+//13.Check if a string contains a substring.
+const checkStrContainsSubstring = (str, subStr) => str.includes(subStr);
+const str13a = "Computer";
+const str13b = "put";
+// console.log(checkStrContainsSubstring(str13a, str13b));
 
-//     Replace all spaces in a string with - (or %20).
+//14.Replace all spaces in a string with - (or %20).
+const replaceSpaceInStr = (str) => str.split(" ").join("%20");
+const str14 = "vikas singh mewara";
+// console.log(replaceSpaceInStr(str14));
 
-//     Find the frequency of a given character in a string.
+const replaceSpaceInStr2 = (str) => str.replace(/ /g, "-");
+// console.log(replaceSpaceInStr2(str14));
 
-//     Check if two strings are rotations of each other.
+//15.Find the frequency of a given character in a string.
+const findFrequencyOfChars = (str) => {
+  let freq = {};
+  for (let char of str) {
+    freq[char] = (freq[char] || 0) + 1;
+  }
+  return freq;
+};
+const str15 = "Cooler";
+// console.log(findFrequencyOfChars(str15));
 
-//     Remove all white spaces from a string.
+//16.Check if two strings are rotations of each other.
+const checkIfStrAreRotation = (str1, str2) => {
+  if (str1.length != str2.length) return false;
+  return (str1 + str1).includes(str2);
+};
+const str16a = "vikas";
+const str16b = "asvik";
+// console.log(checkIfStrAreRotation(str16a, str16b));
 
-//     Capitalize the first letter of each word in a sentence.
+//17.Remove all white spaces from a string.
+const removeWhiteSpaces = (str) => str.replace(/\s+/g, "");
+const str17 = "   I am Looking    forward     ";
+// console.log(removeWhiteSpaces(str17));
 
-//     Find the largest and smallest word in a string.
+//18.Capitalize the first letter of each word in a sentence.
+const capitalizeFirstLetterOfWord = (str) =>
+  str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+const str18 = "capitalize the first letter of each word";
+console.log(capitalizeFirstLetterOfWord(str18));
 
-//     Count uppercase, lowercase, digits, and special characters.
+//19.Find the largest and smallest word in a string.
+const findLargestAndSmallestWord = (str) => {
+  let strArr = str.trim().split(/\s+/);
+  let largestWord = strArr[0];
+  let smallestWord = strArr[0];
+  for (let word of strArr) {
+    if (largestWord.length < word.length) {
+      largestWord = word;
+    }
+    if (smallestWord.length > word.length) {
+      smallestWord = word;
+    }
+  }
+  return {
+    SmallestWord: smallestWord,
+    LargestWord: largestWord,
+  };
+};
+const str19 = "Find The  Largest and Smallest word from string";
+// console.log(findLargestAndSmallestWord(str19));
+
+//20.Count uppercase, lowercase, digits, and special characters.
+const countCases = (str) => {
+  let uppercaseCount = 0,
+    lowercaseCount = 0,
+    digitsCount = 0,
+    specialCharCount = 0;
+
+  for (let char of str) {
+    if (char >= "A" && char <= "Z") {
+      uppercaseCount++;
+    } else if (char >= "a" && char <= "z") {
+      lowercaseCount++;
+    } else if (char >= "0" && char <= "9") {
+      digitsCount++;
+    } else {
+      specialCharCount++;
+    }
+  }
+  return {
+    UpperCase: uppercaseCount,
+    LowerCase: lowercaseCount,
+    Digits: digitsCount,
+    SpecialCharacter: specialCharCount,
+  };
+};
+const str20 = "CountCases- 20";
+// console.log(countCases(str20));
 
 // C. Moderately Common (Asked in Logical Rounds)
 
