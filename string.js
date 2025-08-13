@@ -190,7 +190,7 @@ const capitalizeFirstLetterOfWord = (str) =>
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 const str18 = "capitalize the first letter of each word";
-console.log(capitalizeFirstLetterOfWord(str18));
+// console.log(capitalizeFirstLetterOfWord(str18));
 
 //19.Find the largest and smallest word in a string.
 const findLargestAndSmallestWord = (str) => {
@@ -243,25 +243,109 @@ const str20 = "CountCases- 20";
 
 // C. Moderately Common (Asked in Logical Rounds)
 
-//     Check if a string is a pangram (contains all letters of the alphabet).
+//21.Check if a string is a pangram (contains all letters of the alphabet).
+const isPanagram = (str) => {
+  let result = new Set();
+  for (let char of str.toLowerCase()) {
+    if (char >= "a" && char <= "z") {
+      result.add(char);
+    }
+  }
+  return result.size === 26;
+};
+const str21 =
+  "The quick brown fox jumps over the lazy dog  14567890-!@#$%^&*()_";
+// console.log(isPanagram(str21));
 
-//     Count the number of special characters in a string.
+//22.Count the number of special characters in a string.
+const countSpecialChars = (str) => {
+  let specialCharCount = 0;
+  for (let char of str.toLowerCase()) {
+    if (
+      !(char >= "a" && char <= "z") &&
+      !(char >= "0" && char <= "9") &&
+      char != " "
+    ) {
+      specialCharCount++;
+    }
+  }
+  return { Count: specialCharCount };
+};
+let str22 = "he12ll@ow8 wo#r$l";
+// console.log(countSpecialChars(str22));
 
-//     Find the ASCII value of each character in a string.
+//23.Find the ASCII value of each character in a string.
+const asciiValueOfChar = (str) => {
+  let values = {};
+  for (let char of str) {
+    values[char] = char.charCodeAt(0);
+  }
+  return values;
+};
+const str23 = "Vikas";
+// console.log(asciiValueOfChar(str23));
 
-//     Find the most frequent character in a string.
+//24.Find the most frequent character in a string.
+const findMostFrequentChar = (str) => {
+  let freq = {};
+  for (let char of str) {
+    if (char === " ") continue;
+    freq[char] = (freq[char] || 0) + 1;
+  }
+  let mostFreqNum = Math.max(...Object.values(freq));
+  let mostFreqChar = Object.keys(freq).filter(
+    (char) => freq[char] === mostFreqNum
+  );
 
-//     Remove characters from the first string which are present in the second string.
+  return { Characters: mostFreqChar, Frequency: mostFreqNum };
+};
+const str24 = "Hellow world ";
+// console.log(findMostFrequentChar(str24));
 
-//     Check if a string is made of repeated substrings (e.g., "abab").
+//25.Remove characters from the first string which are present in the second string.
+const removeCharsFromStr = (str1, str2) => {
+  let result = "";
+  for (let char of str1) {
+    if (!str2.includes(char)) {
+      result += char;
+    }
+  }
+  return result;
+};
+const str25a = "vgioaklsu";
+const str25b = "vikas";
+// console.log(removeCharsFromStr(str25a, str25b));
 
-//     Find the index of the first occurrence of a substring.
+//26.Check if a string is made of repeated substrings (e.g., "abab").
 
-//     Count the frequency of each word in a sentence.
+//27.Find the index of the first occurrence of a substring.
 
-//     Remove all occurrences of a given character from a string.
+//28.Count the frequency of each word in a sentence.
+const countWordsFreq = (str) => {
+  let freq = {};
+  let strArr = str.toLowerCase().split(/\s+/);
+  for (let word of strArr) {
+    freq[word] = (freq[word] || 0) + 1;
+  }
+  return freq;
+};
+const str28 =
+  "Count the Frequency of the each       word and print the final frequency count";
+// console.log(countWordsFreq(str28));
 
-//     Convert a string to a number (without parseInt / Number).
+//29.Remove all occurrences of a given character from a string.
+
+//30.Convert a string to a number (without parseInt / Number).
+const convertStrToNum = (str) => {
+  let num = 0;
+  for (let char of str) {
+    let digit = char.charCodeAt(0) - "0".charCodeAt(0);
+    num = num * 10 + digit;
+  }
+  return num;
+};
+const str30 = "1234567";
+console.log(convertStrToNum(str30));
 
 // D. Less Common but Good to Know
 
