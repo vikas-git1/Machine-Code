@@ -81,6 +81,16 @@ const findNonRepeatingChars = (str) => {
 const str6 = "azibdklablzidk";
 // console.log(findNonRepeatingChars(str6));
 
+// const findNonRepeatingChars = (str) => {
+//   let freq = {};
+//   for (let char of str) {
+//     freq[char] = (freq[char] || 0) + 1;
+//   }
+//   return Object.keys(freq)
+//     .filter((char) => freq[char] === 1)
+//     .join("");
+// };
+
 //7.Check if two strings are anagrams.
 const checkAnagrams = (str1, str2) => {
   let str1Sort = str1.toLowerCase().split("").sort().join("");
@@ -345,7 +355,7 @@ const convertStrToNum = (str) => {
   return num;
 };
 const str30 = "1234567";
-console.log(convertStrToNum(str30));
+// console.log(convertStrToNum(str30));
 
 // D. Less Common but Good to Know
 
@@ -390,3 +400,44 @@ console.log(convertStrToNum(str30));
 //     Find the minimum number of flips to make a binary string alternate.
 
 //     Rotate characters of a string (left or right rotation).
+
+//! 14.Count common sub-sequence in two strings.
+//! 18.Print all the duplicates in the input string.
+const printDuplicates = (str) => {
+  let freq = {};
+  for (let char of str) {
+    freq[char] = (freq[char] || 0) + 1;
+  }
+  return Object.keys(freq)
+    .filter((char) => freq[char] > 1)
+    .join("");
+};
+let str = "viiikasass";
+// console.log(printDuplicates(str));
+
+// Reverse a string without using built-in reverse().
+const reverseStr2 = (str) => {
+  let result = "";
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    result += str[i];
+  }
+  return result;
+};
+let strrr = "hellow";
+console.log(reverseStr2(strrr));
+
+const findSecondLargestNum = (arr) => {
+  let uniqueArr = [...new Set(arr)];
+  let sortedArr = uniqueArr.sort((a, b) => a - b);
+  return sortedArr[1];
+};
+let arr = [9, 27, 90, 25, 17];
+console.log(findSecondLargestNum(arr));
+
+const isPalindromeStr = (str) => {
+  let reversdStr = str.split("").reverse().join("");
+  return str === reversdStr;
+};
+let strr = "madam";
+console.log(isPalindromeStr(strr));

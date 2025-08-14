@@ -279,7 +279,7 @@ const arr23 = [2, 10, 22, 6, 3, 7, 100, 30, 20];
 // ❖ Kadane’s Algorithm (Max subarray sum) – Must-know.
 // ❖ Move all zeroes to the end (without changing order) – Simple but tricky.
 const moveZeroesToEnd = (arr) => {
-  for (let el of arr) {
+  for (let el of arr) { 
     if (el === 0) {
       arr.push(el);
     }
