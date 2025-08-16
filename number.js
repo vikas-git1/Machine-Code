@@ -141,6 +141,25 @@ const isPerfectNum = (num) => {
 // console.log(isPerfectNum(29));
 
 //13. Check if a number is strong (sum of factorial of digits = number)
+const findFactorialOfDigit = (digit) => {
+  let factorial = 1;
+  for (let i = 1; i <= digit; i++) {
+    factorial *= i;
+  }
+  return factorial;
+};
+const sumOfFactorialOfDigits = (num) => {
+  let sum = 0;
+  let numStr = num.toString();
+  for (let char of numStr) {
+    let factorialOfDigit = findFactorialOfDigit(parseInt(char));
+    sum += factorialOfDigit;
+  }
+  return sum === num
+    ? `Yes, the given number ${num} is a strong number`
+    : `No, the given number ${num} is not a strong number`;
+};
+// console.log(sumOfFactorialOfDigits(145));
 
 //14. Check if a number is Harshad (Niven number)
 const isHarshadNum = (num) => {
@@ -242,3 +261,142 @@ const sumOfFirstNaturalNumbers = (N) => {
   return sum;
 };
 // console.log(sumOfFirstNaturalNumbers(5));
+
+// 21. Find the largest of three numbers.
+const findLargestOfThreeNums = (num1, num2, num3) => {
+  let largestNum = num1;
+  if (num2 > largestNum) largestNum = num2;
+  if (num3 > largestNum) largestNum = num3;
+  return largestNum;
+};
+// console.log(findLargestOfThreeNums(200, 150, 100));
+
+// 22. Check if two numbers are coprime (GCD is 1).
+const GCD = (num1, num2) => {
+  let gcd = 1;
+  for (let i = 1; i <= Math.min(num1, num2); i++) {
+    if (num1 % i === 0 && num2 % i === 0) {
+      gcd = i;
+    }
+  }
+  return gcd;
+};
+const checkCoPrimeNums = (num1, num2) => {
+  if (GCD(num1, num2) === 1) {
+    return true;
+  }
+  return false;
+};
+// console.log(checkCoPrimeNums(14, 29));
+
+// 23. Find the sum of all even numbers in a range.
+const sumOfEvenNumsInRange = (start, end) => {
+  let sum = 0;
+  for (let i = start; i <= end; i++) {
+    if (i % 2 === 0) {
+      sum += i;
+    }
+  }
+  return `The Sum of all Even Numbers in the Range from ${start} to ${end} is ${sum} `;
+};
+// console.log(sumOfEvenNumsInRange(10, 15));
+
+// 24. Find the sum of all odd numbers in a range.
+const findSumOfAllOddInRange = (start, end) => {
+  let sum = 0;
+  if (start % 2 === 0) {
+    start++;
+  }
+  for (let i = start; i <= end; i += 2) {
+    sum += i;
+  }
+  return `The Sum of all Odd Numbers in the Range from ${start} to ${end} is ${sum} `;
+};
+// console.log(findSumOfAllOddInRange(10, 15));
+
+// 25. Check if a number is a power of two.
+const isPowerOfTwo = (num) => {
+  for (let i = 0; i < num; i++) {
+    if (num === Math.pow(2, i)) {
+      return `Yes, The number ${num} is a power of 2`;
+    }
+  }
+  return `No, The number ${num} is not a power of 2`;
+};
+// console.log(isPowerOfTwo(16));
+
+// 26. Count the number of factors of a number.
+const countNumOfFactors = (num) => {
+  let count = 0;
+  for (let i = 1; i <= num; i++) {
+    if (num % i === 0) {
+      count++;
+    }
+  }
+  return `The Total number of Factors of the given number ${num} is ${count}`;
+};
+// console.log(countNumOfFactors(10));
+
+// 27. Find the product of digits of a number.
+const productOfDigits = (num) => {
+  let product = 1;
+  let numStr = num.toString();
+  for (let char of numStr) {
+    let digit = parseInt(char);
+    product *= digit;
+  }
+  return product;
+};
+// console.log(productOfDigits(111112));
+
+// 28. Find the sum of squares of digits of a number.
+const sumOfSquaresOfDigits = (num) => {
+  let sum = 0;
+  let numStr = num.toString();
+  for (let char of numStr) {
+    let digit = parseInt(char);
+    sum += digit ** 2;
+  }
+  return sum;
+};
+// console.log(sumOfSquaresOfDigits(123));
+
+// 29. Check if a number is an automorphic number (square ends with same digits as number).
+const isAutomorphic = (num) =>
+  String(num * num).endsWith(String(num))
+    ? `Yes, number ${num} is automorphic number`
+    : `No, number ${num} is not a automorphic number`;
+//   {
+//   let square = (num * num).toString();
+//   let numStr = num.toString();
+//   if (square.endsWith(numStr)) {
+//     return `Yes, number ${num} is automorphic number`;
+//   }
+//   return `No, number ${num} is not a automorphic number`;
+// };
+// console.log(isAutomorphic(25));
+// console.log(isAutomorphic(3));
+
+// 30. Find the nth prime number.
+const isPrimeNum = (num) => {
+  if (num <= 1) return false;
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+};
+const findNthPrimeNum = (num) => {
+  let nthPrime;
+  count = 0;
+  for (let i = 2; count < num; i++) {
+    if (isPrimeNum(i)) {
+      nthPrime = i;
+      count++;
+    }
+  }
+
+  return nthPrime;
+};
+// console.log(findNthPrimeNum(10));
