@@ -152,22 +152,6 @@ const removeDuplicates = (arr) => {
 const arr12 = [12, 25, 78, 23, 12, 25, 25, 250, 78, 25];
 // console.log(removeDuplicates(arr12));
 
-// 13.Check if Array is Sorted
-function checkSorted(arr) {
-  let asc = true,
-    desc = true;
-
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] > arr[i + 1]) asc = false;
-    if (arr[i] < arr[i + 1]) desc = false;
-  }
-
-  if (asc) return "Array is sorted in ascending order";
-  if (desc) return "Array is sorted in descending order";
-  return "Array is not sorted";
-}
-const arr13 = [12, 18, 23, 78, 100];
-// console.log(checkSorted(arr13));
 
 // 14.Find all repeating elements
 const findRepeatingEls = (arr) => {
@@ -204,15 +188,7 @@ const findNonRepeatingEls = (arr) => {
 const arr15 = [12, 100, 23, 89, 18, 18, 23, 78, 100];
 // console.log(findNonRepeatingEls(arr15));
 
-// 16.Sort array by frequency
-const sortArrayByFreq = (arr) => {};
-const arr16 = [12, 100, 23, 89, 18, 18, 23, 78, 100, 8];
-// console.log(sortArrayByFreq(arr16));
 
-//17.Sort an array without built-in methods
-const sortArrWithoutBuiltIn = (arr) => {};
-const arr17 = [67, 34, 87, 10, 8, 765, 100];
-// console.log(sortArrWithoutBuiltIn(arr17));
 
 //18.Rearrange array in increasing-decreasing order
 const rearrangeInIncDecOrder = (arr) => {
@@ -225,17 +201,7 @@ const rearrangeInIncDecOrder = (arr) => {
 const arr18 = [2, 8, 5, 7, 1, 9, 3, 6, 4];
 // console.log(rearrangeInIncDecOrder(arr18));
 
-//19.Replace each element by its rank
-const replaceElsByRank = (arr) => {
-  let sortedArr = [...new Set(arr)].sort((a, b) => a - b);
-  let rank = {};
-  sortedArr.forEach((num, index) => {
-    rank[num] = index + 1;
-  });
-  return arr.map((num) => rank[num]);
-};
-const arr19 = [10, 70, 90, 10, 20, 50, 100, 20];
-// console.log(replaceElsByRank(arr19));
+
 
 //20.Check if an array is a subset of another
 const checkSubsetOfArr = (arr1, arr2) => {
@@ -276,10 +242,9 @@ const circularRotationByK = (arr, K) => {
 const arr23 = [2, 10, 22, 6, 3, 7, 100, 30, 20];
 // console.log(circularRotationByK(arr23, 8));
 
-// ❖ Kadane’s Algorithm (Max subarray sum) – Must-know.
 // ❖ Move all zeroes to the end (without changing order) – Simple but tricky.
 const moveZeroesToEnd = (arr) => {
-  for (let el of arr) { 
+  for (let el of arr) {
     if (el === 0) {
       arr.push(el);
     }
@@ -289,8 +254,56 @@ const moveZeroesToEnd = (arr) => {
 const arr24 = [10, 0, 23, 9, 0, 212, 82, 0, 74];
 console.log(moveZeroesToEnd(arr24));
 
+
+
+//19.Replace each element by its rank
+const replaceElsByRank = (arr) => {
+  let sortedArr = [...new Set(arr)].sort((a, b) => a - b);
+  let rank = {};
+  sortedArr.forEach((num, index) => {
+    rank[num] = index + 1;
+  });
+  return arr.map((num) => rank[num]);
+};
+const arr19 = [10, 70, 90, 10, 20, 50, 100, 20];
+// console.log(replaceElsByRank(arr19));
+
+
+// 13.Check if Array is Sorted
+function checkSorted(arr) {
+  let asc = true,
+    desc = true;
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] > arr[i + 1]) asc = false;
+    if (arr[i] < arr[i + 1]) desc = false;
+  }
+
+  if (asc) return "Array is sorted in ascending order";
+  if (desc) return "Array is sorted in descending order";
+  return "Array is not sorted";
+}
+const arr13 = [12, 18, 23, 78, 100];
+// console.log(checkSorted(arr13));
+
+// 16.Sort array by frequency
+const sortArrayByFreq = (arr) => {};
+const arr16 = [12, 100, 23, 89, 18, 18, 23, 78, 100, 8];
+// console.log(sortArrayByFreq(arr16));
+
+//17.Sort an array without built-in methods
+const sortArrWithoutBuiltIn = (arr) => {
+};
+const arr17 = [67, 34, 87, 10, 8, 765, 100];
+// console.log(sortArrWithoutBuiltIn(arr17));
+
+// ❖ Kadane’s Algorithm (Max subarray sum) – Must-know.
 // ❖ Find the missing number from 1 to N – Asked in Aptitude + Coding rounds.
 // ❖ Find union and intersection of 2 arrays – Common in set-based problems.
 // ❖ Check if two arrays are equal – Logical implementation-focused.
 // ❖ Find peak element – Very common in binary search-based rounds.
 // ❖ Count pairs with given sum – Hashmap based, frequently asked.
+// ❖ Sort an array without using built-in sort
+// ❖ Check if an array is sorted
+// ❖ Implement debounce/throttle function (sometimes asked in advanced)
+// ❖ Flatten a nested array

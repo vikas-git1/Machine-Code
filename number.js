@@ -400,3 +400,20 @@ const findNthPrimeNum = (num) => {
   return nthPrime;
 };
 // console.log(findNthPrimeNum(10));
+
+// function abc(a, b, c) {}
+// function pqr(a = 1, b, c) {}
+// function xyz(a, b = 0, c) {}
+
+// function subtract(a, b) {
+//   if (b !== undefined) {
+//     return a - b;
+//   }
+//   return function (c) {
+//     return a - c;
+//   };
+// }
+// console.log(subtract(10, 5));
+// console.log(subtract(10)(5));
+
+//  
