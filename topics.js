@@ -177,3 +177,115 @@ const { brand, modal, name, price } = obj16;
 //!============================================================================================================
 
 // Q18.Basic closure example
+function outerFunction() {
+  let count = 0;
+  return function innerFunction() {
+    count++;
+    return count;
+  };
+}
+let count = outerFunction();
+// console.log(count());
+// console.log(count());
+// console.log(count());
+
+// Q19. Closure with arguments
+const parentFunction = (a, b) => {
+  let product = a * b;
+  return function childFunction() {
+    let sum = a + b;
+    return { Product: product, Sum: sum };
+  };
+};
+let result = parentFunction(10, 5);
+// console.log(result());
+
+// Q20. Currying using closure
+const currying = (a) => {
+  return function (b) {
+    return a + b;
+  };
+};
+// console.log(currying(100)(1));
+
+//!============================================================================================================
+
+// Q21. Callback Example
+const greet = (name, fun) => {
+  setTimeout(() => {
+    console.log(`Hellow, ${name}`);
+    fun();
+  }, 3000);
+};
+const callbackFun = () => {
+  console.log(`Welcome to Javascript`);
+};
+
+// greet("Vikas", callbackFun);
+
+// Q22. Promise Example
+const waitTwoSeconds = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Promise Resolved after 2 seconds");
+    }, 2000);
+  });
+};
+// waitTwoSeconds().then((msg) => console.log(msg));
+
+// Q23. Promise Example with Async Await
+const waitThreeSeconds = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Promise Resolved after 3 seconds");
+    }, 3000);
+  });
+};
+
+const handleAsyncFun = async () => {
+  let message = await waitThreeSeconds();
+  console.log(message);
+};
+
+// handleAsyncFun();
+
+//Q24. Event Loop / Execution Order
+// A common interview question: predict the output.
+// console.log("Start");
+// setTimeout(() => console.log("Timer"), 0);
+// Promise.resolve().then(() => console.log("Promise"));
+// console.log("End");
+
+//!============================================================================================================
+
+// Q25. Question: Create a promise that resolves if a number is even, rejects if odd.
+const checkEven = (num) => {
+  return new Promise((resolve, reject) => {
+    if (num % 2 === 0) resolve("Even Number");
+    else reject("Odd Number");
+  });
+};
+
+// checkEven(12)
+//   .then((result) => console.log(result))
+//   .catch((error) => console.log(error));
+
+// Q26. Multiply a number by 2, then add 5 using promise chaining.
+Promise.resolve(10)
+  .then((num) => num * 2)
+  .then((num) => num + 5);
+// .then((result) => console.log(result));
+
+// Q27. Promise.all
+let p1 = Promise.resolve(10);
+let p2 = Promise.resolve(20);
+let p3 = Promise.resolve(30);
+// let p4 = Promise.resolve(30);
+let p4 = Promise.reject("Error");
+// Promise.all([p1, p2, p3, p4]).then((results) => console.log(results));
+// .catch((error) => console.log(error));
+
+// Q28/ Promise.race
+Promise.race([p4, p2, p3, p1]);
+// .then((result) => console.log(result))
+// .catch((error) => console.log(error));
