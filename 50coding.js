@@ -106,4 +106,235 @@ const findNthFibonacciNum = (n) => {
 };
 // console.log(findNthFibonacciNum(10));
 
+// 16.Create a function that will return a Boolean specifying if a number is prime
+const isPrime = (num) => {
+  for (let i = 2; i < num; i++) if (num % i === 0) return false;
+  return true;
+};
+// console.log(isPrime(10));
+// console.log(isPrime(7));
 
+// 17. Calculate the sum of digits of a positive integer number.
+const sumOfDigits = (num) => {
+  let sum = 0;
+  let numArr = num.toString().split("");
+  for (let num of numArr) {
+    let digit = parseInt(num);
+    sum += digit;
+  }
+  return sum;
+};
+// console.log(sumOfDigits(1238));
+
+const sumOfDigits2 = (num) => {
+  let sum = 0;
+  while (num > 0) {
+    sum += num % 10;
+    num = Math.floor(num / 10);
+  }
+  return sum;
+};
+// console.log(sumOfDigits2(456));
+
+// 18. Print the first 100 prime numbers.
+const checkIsPrime = (n) => {
+  for (let i = 2; i < n; i++) if (n % i === 0) return false;
+  return true;
+};
+const printFirstPrimes = (value) => {
+  let series = [];
+  let count = 0;
+
+  for (let i = 2; count < value; i++) {
+    if (checkIsPrime(i)) {
+      series.push(i);
+      count++;
+    }
+  }
+
+  return series;
+};
+// console.log(printFirstPrimes(100));
+
+// 19. Create a function that will return in an array the first “p” prime numbers greater than “n”
+const printFirstPrimesGreaterThanNum = (total, n) => {
+  let primes = [];
+  let count = 0;
+  for (let i = n + 1; count < total; i++) {
+    if (isPrime(i)) {
+      primes.push(i);
+      count++;
+    }
+  }
+  return primes;
+};
+// console.log(printFirstPrimesGreaterThanNum(10, 8));
+
+// 20. Rotate an array to the left 1 position.
+const rotateArrLeft = (arr) => {
+  let firstEl = arr.shift();
+  arr.push(firstEl);
+  return arr;
+};
+const arr20 = [1, 2, 3, 4, 5, 6];
+// console.log(rotateArrLeft(arr20));
+
+// 21. Rotate an array to the right 1 position.
+const rotateARrRight = (arr) => {
+  let lastEl = arr.pop();
+  arr.unshift(lastEl);
+  return arr;
+};
+const arr21 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// console.log(rotateARrRight(arr21));
+
+// 22. Reverse an array.
+const reverseArr = (arr) => arr.reverse();
+const arr22 = [2, 4, 6, 8, 10];
+// console.log(reverseArr(arr22));
+
+const reversdArr = (arr) => {
+  let result = [];
+  for (let el of arr) {
+    result.unshift(el);
+  }
+  return result;
+};
+// console.log(reversdArr(arr22));
+
+// 23. Reverse a string.
+const reverseStr = (str) => str.split("").reverse().join("");
+// console.log(reverseStr("abcdef"));
+
+// 24. Create a function that will merge two arrays and return the result as a new array
+const mergeArrays = (arr1, arr2) => [...arr1, ...arr2];
+const arr24 = ["A", "B", "C", "D"];
+const arrr24 = ["X", "Y", "Z"];
+// console.log(mergeArrays(arr24, arrr24));
+
+// 25. Create a function that will receive two arrays of numbers as arguments and return an array composed of all the numbers that are either in the first array  or second array but not in both.
+const uniqueArr = (arr1, arr2) => {
+  let result = [];
+  for (let el of arr2) {
+    if (!arr1.includes(el)) {
+      result.push(el);
+    }
+  }
+  for (let el of arr1) {
+    if (!arr2.includes(el)) {
+      result.push(el);
+    }
+  }
+  return result;
+};
+const arr25 = [1, 3, 5, 7, 9, 11, 15];
+const arrr25 = [1, 2, 3, 4, 5, 7, 9];
+// console.log(uniqueArr(arr25, arrr25));
+
+// 26. Create a function that will receive two arrays and will return an array with elements that are in the first array but not in the second.
+const diffArr = (arr1, arr2) => {
+  let result = [];
+  for (let el of arr1) {
+    if (!arr2.includes(el)) {
+      result.push(el);
+    }
+  }
+  return result;
+};
+const arr26 = [2, 4, 6, 10, 20];
+const arrr26 = [1, 3, 5, 10, 20];
+// console.log(diffArr(arr26, arrr26));
+
+// 27. Create a function that will receive an array of numbers as argument and will return a new array with distinct elements.
+const removeDuplicates = (arr) => {
+  let unique = [];
+  for (let el of arr) if (!unique.includes(el)) unique.push(el);
+  return unique;
+};
+const arr27 = [2, 3, 1, 2, 4, 4, 3, 1];
+// console.log(removeDuplicates(arr27));
+
+// 28. Calculate the sum of first 100 prime numbers and return them in an array.
+const isPrimeNum = (num) => {
+  if (num <= 1) return false;
+  for (let i = 2; i < num; i++) if (num % i === 0) return false;
+  return true;
+};
+
+const sumOfPrimes = (n) => {
+  let primes = [];
+  let sum = 0;
+  let count = 0;
+  for (let i = 2; count < n; i++) {
+    if (isPrimeNum(i)) {
+      primes.push(i);
+      count++;
+    }
+  }
+  sum = primes.reduce((sum, num) => sum + num, 0);
+  return {
+    sum: sum,
+    primes: primes,
+  };
+};
+// console.log(sumOfPrimes(100));
+
+// 29. Print the distance between the first 100 prime numbers.
+const printDistanceBetweenPrimes = (n) => {
+  let result = [];
+  let primes = [];
+  let count = 0;
+  for (let i = 2; count < n; i++) {
+    if (isPrimeNum(i)) {
+      primes.push(i);
+      count++;
+    }
+  }
+  for (let j = 0; j < primes.length - 1; j++) {
+    let distance = primes[j + 1] - primes[j];
+    result.push(distance);
+  }
+  return result;
+};
+// console.log(printDistanceBetweenPrimes(10));
+
+// 30. Create a function that will add two positive numbers of indefinite size. The numbers are received as strings and the result should be also provided as string.
+const addNumStrs = (numStr1, numStr2) => {
+  let sum = parseInt(numStr1) + parseInt(numStr2);
+  return sum.toString();
+};
+// console.log(addNumStrs("100", "99")); //Not correct for large data
+
+// 31. Create a function that will return the number of words in a text
+// 32. Create a function that will capitalize the first letter of each word in a text
+// 33. Calculate the sum of numbers received in a comma delimited string
+// 34. Create a function that returns an array with words inside a text.
+// 35. Create a function to convert a CSV text to a “bi-dimensional” array
+// 36. Create a function that converts a string to an array of characters
+// 37. Create a function that will convert a string in an array containing the ASCII codes of
+// each character
+// 38. Create a function that will convert an array containing ASCII codes in a string
+// 39. Implement the Caesar cypher
+// 40. Implement the bubble sort algorithm for an array of numbers
+// 41. Create a function to calculate the distance between two points defined by their x, y
+// coordinates
+// 42. Create a function that will return a Boolean value indicating if two circles
+// defined by center coordinates and radius are intersecting
+// 43. Create a function that will receive a bi-dimensional array as argument and a
+// number and will extract as a unidimensional array the column specified by the
+// number
+// 44. Create a function that will convert a string containing a binary number into a
+// number
+// 45. Create a function to calculate the sum of all the numbers in a jagged array
+// (contains numbers or other arrays of numbers on an unlimited number of
+// levels)
+// 46. Find the maximum number in a jagged array of numbers or array of numbers
+// 47. Deep copy a jagged array with numbers or other arrays in a new array
+// 48. Create a function to return the longest word in a string
+// 49. Shuffle an array of strings
+// 50. Create a function that will receive n as argument and return an array of n
+// random numbers from 1 to n. The numbers should be unique inside the array.
+// 51. Find the frequency of letters inside a string. Return the result as an array of
+// arrays. Each subarray has 2 elements: letter and number of occurrences.
+// 52. Calculate Fibonacci(500) with high precision (all digits)
+// 53. Calculate 70! with high precision (all digits)
