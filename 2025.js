@@ -1,44 +1,219 @@
-// Two Sum — classic interview favorite (hashmap / O(n)).
+//!1 Two Sum — classic interview favorite (hashmap / O(n)).
+const twoSum = (arr, target) => {};
+const arr1 = [23, 7, 2, 11, 15];
+// console.log(twoSum(arr1, 9));
 
-// Reverse a string (built-in vs manual) — fundamental.
+//! 2 Reverse a string (built-in vs manual) — fundamental.
+const reverseStr = (str) => str.split("").reverse().join("");
+// console.log(reverseStr("vikas"));
 
-// Check if a string is a palindrome — simple string logic checks.
+const reverseString = (str) => {
+  let reverseStr = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    reverseStr += str[i];
+  }
+  return reverseStr;
+};
+// console.log(reverseString("vikas"));
 
-// Remove duplicates from an array — Set / filter basics.
+//! 3 Check if a string is a palindrome — simple string logic checks.
+const isPalindrome = (str) => str === str.split("").reverse().join("");
+// console.log(isPalindrome("bob"));
+// console.log(isPalindrome("bod"));
 
-// Find the maximum number in an array — reduce or loop.
+//! 4 Remove duplicates from an array — Set / filter basics.
+const removeDuplicatesFromArr = (arr) => [...new Set(arr)];
+const arr4 = [1, 2, 2, 3, 4, 5, 6, 5, 3, 2];
+// console.log(removeDuplicatesFromArr(arr4));
 
-// Sum of all numbers in an array — reduce/fold.
+const removeDuplicatesFromArray = (arr) => {
+  let uniqueArr = [];
+  for (let el of arr) if (!uniqueArr.includes(el)) uniqueArr.push(el);
+  return uniqueArr;
+};
+// console.log(removeDuplicatesFromArray(arr4));
 
-// Check balanced parentheses — stack logic (common JS task).
+const removeDuplicates = (arr) => {
+  return arr.filter((el, index) => arr.indexOf(el) === index);
+};
+// console.log(removeDuplicates(arr4));
 
-// Capitalize first letter of each word — string manipulation.
+//! 5 Find the maximum number in an array — reduce or loop.
+const arr5 = [4, 7, 9, 23, 65, 12, 654, 21, 33];
+const findMax = (arr) => {
+  let maxNum = arr[0];
+  for (let num of arr) if (maxNum < num) maxNum = num;
+  return maxNum;
+};
+// console.log(findMax(arr5));
 
-// Count frequency of chars in string / elements in array — hash map patterns.
+const findMaxNum = (arr) =>
+  arr.reduce((num, curr) => (num > curr ? num : curr));
+// console.log(findMaxNum(arr5));
 
-// Implement array flatten (multi-depth) — recursion or stack, JSON style.
+//! 6 Sum of all numbers in an array — reduce/fold.
+const arr6 = [4, 71, 29, 23, 65, 12, 654, 21, 33];
+const sumNum = (arr) => arr.reduce((sum, num) => (sum += num), 0);
+// console.log(sumNum(arr6));
 
-// Find missing number in array 1..n — math or XOR trick.
+const sumNumber = (arr) => {
+  let sum = 0;
+  for (let num of arr) sum += num;
+  return sum;
+};
+// console.log(sumNumber(arr6));
 
-// Find intersection / union of two arrays — Set operations.
+//! 7 Check balanced parentheses — stack logic (common JS task).
+
+//! 8 Capitalize first and last letter of each word — string manipulation.
+const capitalizeFirstLetter = (str) => {
+  let strArr = str
+    .split(" ")
+    .filter((word) => word.length > 0)
+    .map((word) => {
+      if (word.length === 1) return word.toUpperCase();
+      return (
+        word[0].toUpperCase() + word.slice(1, -1) + word.at(-1).toUpperCase()
+      );
+    })
+    .join(" ");
+  return strArr;
+};
+// console.log(capitalizeFirstLetter("this is  vikas mewara"));
+
+//! 9 Count frequency of chars in string / elements in array — hash map patterns.
+const countFreqOfChar = (str) => {
+  let freq = {};
+  for (let char of str) {
+    freq[char] = (freq[char] || 0) + 1;
+  }
+  return freq;
+};
+// console.log(countFreqOfChar("abfccddesfa"));
+
+//! 10 Implement array flatten (multi-depth) — recursion or stack, JSON style.
+
+//! 11 Find missing number in array 1..n — math or XOR trick.
+
+//! 12 Find intersection / union of two arrays — Set operations.
 
 // Implement debounce/throttle — essential for JS UI performance.
 
-// Fibonacci sequence (iterative & recursive) — recursion + optimization.
+//! 13 Fibonacci sequence (iterative & recursive) — recursion + optimization.
+const printFibonacci = (n) => {
+  let series = [];
+  if (n < 1) return series;
+  if (n >= 1) series.push(0);
+  if (n >= 2) series.push(1);
+  for (let i = 2; i < n; i++) {
+    let nextNum = series[i - 1] + series[i - 2];
+    series.push(nextNum);
+  }
+  return series;
+};
+// console.log(printFibonacci(1));
+// console.log(printFibonacci(2));
+// console.log(printFibonacci(10));
 
-// Sum of digits of a number — math or string conversion.
+const printFibonacciSeq = (n) => {
+  if (n < 1) return [];
+  if (n === 1) return [0];
+  if (n === 2) return [0, 1];
+  let series = printFibonacci(n - 1);
+  series.push(series[series.length - 1] + series[series.length - 2]);
+  return series;
+};
+// console.log(printFibonacciSeq(10));
 
-// Find first non-repeating char in string — combination of frequency and index.
+//! 14 Sum of digits of a number — math or string conversion.
+const sumOfDigits = (num) => {
+  let numStr = num.toString();
+  let sum = 0;
+  for (let num of numStr) {
+    sum += Number(num);
+  }
+  return sum;
+};
+// console.log(sumOfDigits(2090));
 
-// Rotate array left/right by k — index calculation, modular arithmetic.
+const sumOfDigitsOfNum = (num) => {
+  let sum = 0;
+  while (num > 0) {
+    sum += num % 10;
+    num = Math.floor(num / 10);
+  }
+  return sum;
+};
+// console.log(sumOfDigitsOfNum(23786));
 
-// Move zeros to end (or move positives/negatives) — in-place partition logic.
+//! 15 Find first non-repeating char in string — combination of frequency and index.
+const firstNonRepeatingChar = (str) => {
+  let freq = {};
+  for (let char of str) freq[char] = (freq[char] || 0) + 1;
+  for (let char of str) if (freq[char] === 1) return char;
+};
+// console.log(firstNonRepeatingChar("hheelloww"));
 
-// Implement basic sorting (bubble/selection/insertion) — algorithm knowledge.
+//! 16 Rotate array left/right by k — index calculation, modular arithmetic.
+const rotateArrToLeft = (arr, k) => {
+  for (let i = 0; i < k; i++) {
+    let removedEl = arr.shift();
+    arr.push(removedEl);
+  }
+  return arr;
+};
+const arr16 = [1, 2, 3, 4, 5, 6];
+// console.log(rotateArrToLeft(arr16, 3));
 
-// Binary search (sorted array) — search fundamentals.
+const rotateArrToRight = (arr, k) => {
+  for (let i = 0; i < k; i++) {
+    let removedEl = arr.pop();
+    arr.unshift(removedEl);
+  }
+  return arr;
+};
+const arr16b = [10, 20, 30, 40, 50, 60];
+// console.log(rotateArrToRight(arr16b, 2));
 
-// Find all prime numbers below n — sieve or trial division.
+//! 17 Move zeros to end (or move positives/negatives) — in-place partition logic.
+const moveZerosToEnd = (arr) => {};
+const arr17 = [1, 2, 0, 3, 0, 0, 4, 0, 5];
+// console.log(moveZerosToEnd(arr17));
+
+//! 18 Implement basic sorting (bubble/selection/insertion) — algorithm knowledge.
+const bubbleSort = (arr) => {
+  let n = arr.length;
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+    }
+  }
+  return arr;
+};
+const arr18 = [1, 4, 7, 9, 2, 8, 3, 5, 6];
+// console.log(bubbleSort(arr18));
+
+//! 19 Binary search (sorted array) — search fundamentals.
+
+//! 20 Find all prime numbers below n — sieve or trial division.
+const printPrimes = (n) => {
+  let primes = [];
+
+  const isPrime = (num) => {
+    if (num < 2) return false;
+    for (let i = 2; i * i <= num; i++) {
+      if (num % i === 0) {
+        return false;
+      }
+    }
+    return true;
+  };
+  for (let i = 2; i <= n; i++) {
+    if (isPrime(i)) primes.push(i);
+  }
+  return primes;
+};
+console.log(printPrimes(10));
 
 // Print first n prime numbers — iteration + isPrime helper.
 
