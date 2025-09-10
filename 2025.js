@@ -63,7 +63,6 @@ const sumNumber = (arr) => {
 };
 // console.log(sumNumber(arr6));
 
-//! 7 Check balanced parentheses — stack logic (common JS task).
 
 //! 8 Capitalize first and last letter of each word — string manipulation.
 const capitalizeFirstLetter = (str) => {
@@ -213,62 +212,177 @@ const printPrimes = (n) => {
   }
   return primes;
 };
-console.log(printPrimes(10));
+// console.log(printPrimes(10));
 
-// Print first n prime numbers — iteration + isPrime helper.
+//! 21 Print first n prime numbers — iteration + isPrime helper.
+const printFirstPrimes = (n) => {
+  const isPrime = (num) => {
+    if (num < 2) return false;
+    for (let i = 2; i * i <= num; i++) {
+      if (num % i === 0) {
+        return false;
+      }
+    }
+    return true;
+  };
 
-// Nth Fibonacci (recursion) — recursion with memo possibility.
+  const primes = [];
+  let count = 0;
+  for (let i = 2; count < n; i++) {
+    if (isPrime(i)) {
+      primes.push(i);
+      count++;
+    }
+  }
+  return primes;
+};
+// console.log(printFirstPrimes(10));
+
+//! 22 Nth Fibonacci (recursion) — recursion with memo possibility.
+const printNthFibonacci = (n) => {
+  if (n < 1) return `Enter a valid number`;
+  if (n === 1) return 0;
+  if (n === 2) return 1;
+  let a = 0,
+    b = 1,
+    fib;
+  for (let i = 3; i <= n; i++) {
+    fib = a + b;
+    a = b;
+    b = fib;
+  }
+  return fib;
+};
+// console.log(printNthFibonacci(10));
 
 // Implement custom map/filter/reduce — functional programming understanding.
 
-// Merge two sorted arrays — merging pattern.
+//! 23 Merge two sorted arrays — merging pattern.
+const mergeArrays = (arr1, arr2) => [...arr1, ...arr2].sort((a, b) => a - b);
+const arr23a = [1, 3, 5, 7];
+const arr23b = [2, 4, 6, 8];
+// console.log(mergeArrays(arr23a, arr23b));
 
-// Find Kth largest/smallest element — heap or selection algorithm.
+//! 24 Find Kth largest/smallest element — heap or selection algorithm.
 
-// Check if two strings are permutations — sorting or frequency.
+//! 25 Check if two strings are permutations — sorting or frequency.
 
-// Find longest/shortest word in a string — split + reduce.
+const checkPermutaionsSort = (str1, str2) => {
+  if (str1.length != str2.length) return false;
+  let sortedStr1 = str1.split("").sort().join("");
+  let sortedStr2 = str2.split("").sort().join("");
+  return sortedStr1 === sortedStr2;
+};
+// console.log(checkPermutaionsSort("hey", "hey"));
 
-// Reverse words in a string — split, reverse, join.
+const checkPermutaions = (str1, str2) => {
+  for (let char of str1) {
+    if (!str2.includes(char)) {
+      return false;
+    }
+  }
+  return true;
+};
+// console.log(checkPermutaions("hellow", "wllhoe"));
 
-// Count vowels/consonants in a string — iteration + checking.
+//! 26 Find longest/shortest word in a string — split + reduce.
+const findLongestShortestWord = (str) => {
+  let strArr = str.split(" ");
+  let longestWord = strArr[0];
+  let shortestWord = strArr[0];
+  for (let word of strArr) {
+    if (longestWord.length < word.length) longestWord = word;
+    if (shortestWord.length > word.length) shortestWord = word;
+  }
+  return { ShortestWord: shortestWord, LongestWord: longestWord };
+};
+// console.log(findLongestShortestWord("This is the Place"));
 
-// Check if integer is power of two — bit manipulation.
+const findLongestShortestWordReduce = (str) => {
+  let words = str.split(" ");
+  let longestWord = words.reduce((a, b) => (a.length > b.length ? a : b));
+  let shortestWord = words.reduce((a, b) => (a.length < b.length ? a : b));
+  return { ShortestWord: shortestWord, LongestWord: longestWord };
+};
+// console.log(findLongestShortestWordReduce("Hellow World from Earth"));
 
-// Sum values in nested arrays/objects (deep sum) — recursive traversal.
+//! 27 Reverse words in a string — split, reverse, join.
+const reverseStrReverse = (str) => str.split(" ").reverse().join(" ");
+// console.log(reverseStrReverse("Fuck this shit"));
 
-// Flatten nested object to dot/bracket notation — nested object processing.
+//! 28 Count vowels/consonants in a string — iteration + checking.
+const countVowelsConsonants = (str) => {
+  let vowels = "aeiou";
+  let vowelsCount = 0,
+    consonantsCount = 0,
+    spaceCount = 0;
+  let newStr = str.toLowerCase();
+  for (let char of newStr) {
+    if (vowels.includes(char)) {
+      vowelsCount++;
+    } else if (char >= "a" && char <= "z") {
+      consonantsCount++;
+    } else if (char === " ") {
+      spaceCount++;
+    }
+  }
+  return {
+    VowelsCount: vowelsCount,
+    ConsonantsCount: consonantsCount,
+    SpaceCount: spaceCount,
+  };
+};
+// console.log(countVowelsConsonants("Count the chars"));
 
-// Group array of objects by property — JS key-based grouping.
+//! 29 Check if integer is power of two — bit manipulation.
+const isPowerOfTwo = (num) => {
+  if (num < 1) return false;
+  for (let i = 0; i <= num; i++) {
+    if (num === Math.pow(2, i)) {
+      return true;
+    }
+    if (num < Math.pow(2, i)) {
+      break;
+    }
+  }
+  return false;
+};
+// console.log(isPowerOfTwo(16));
 
-// Find duplicates in an array — frequency or Set detection.
 
-// Custom implementation of Promise (or async/await explanation) — deep JS knowledge.
+//! 33 Find duplicates in an array — frequency or Set detection.
+const arr33 = [1, 4, 8, 3, 21, 1, 3, 4, 25];
 
-// Implement LRU cache (basic) — architecture + data structures.
+const findDuplcicates = (arr) => {
+  let freq = {};
+  for (let el of arr) {
+    freq[el] = (freq[el] || 0) + 1;
+  }
+  let duplicates = Object.keys(freq)
+    .filter((key) => freq[key] > 1)
+    .map(Number);
+  return duplicates;
+};
+// console.log(findDuplcicates(arr33));
 
-// Implement stack/queue with arrays — data structure fundamentals.
+//! 34 Custom implementation of Promise (or async/await explanation) — deep JS knowledge.
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    let success = Math.random() > 0.5;
+    if (success) {
+      resolve("The promise is resolved");
+    } else {
+      reject("The promise is rejected");
+    }
+  }, 1000);
+});
 
-// Reverse a linked list (conceptual or code) — pointer manipulation logic.
-
-// Implement debounce + throttle variations (leading/trailing) — deeper UI logic.
-
-// Flatten nested arrays using generator or custom function — advanced flattening.
-
-// Find longest substring with no repeating characters — sliding window.
-
-// Find subarray with maximum sum (Kadane’s) — classic DP/greedy.
-
-// String ↔ Number conversion utilities — parseInt, math, custom logic.
-
-// Validate email/phone via regex — pattern handling basics.
-
-// Sort array of objects by property — comparator and sorting basics.
-
-// Promise concurrency limit / Promise.all implementation — async control.
-
-// Shuffle array (Fisher–Yates) — randomization correctness.
-
-// Small UI logic: implement simple pagination/search filter (pseudo frontend).
-
-// Implement a simple router or URL query parser — common frontend logic task.
+const handlePromise = async () => {
+  try {
+    let response = await myPromise;
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+handlePromise();
