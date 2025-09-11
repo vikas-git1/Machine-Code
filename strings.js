@@ -149,8 +149,7 @@ const firstRepeatingChar = (str) => {
 //!16 Check if a string contains only digits
 const checkDigits = (str) => {
   for (let char of str) {
-    let code = char.charCodeAt(0);
-    if (code < 48 || code > 57) return false;
+    if (char <= "0" || char >= "9") return false;
   }
   return true;
 };
@@ -202,8 +201,8 @@ const checkPangram = (str) => {
 //!21 Replace all spaces with %20 (URLify)
 const URLify = (str) => str.replace(/\s+/g, "%20");
 // console.log(URLify("vikas mewara rajput gahlot"));
-
-// Remove all vowels from a string
+const URLifyStr = (str) => str.split(" ").join("%20");
+// console.log(URLifyStr("hellow world Javascript"));
 
 //!22 Length of the longest word in a sentence
 const lengthOfLongestWord = (str) => {
@@ -218,132 +217,207 @@ const lengthOfLongestWord = (str) => {
 // console.log(lengthOfLongestWord("find length of longest word"));
 
 //!23 Print all substrings of a string
+const printAllSubstrings = (str) => {
+  let substrings = [];
+  for (let i = 0; i < str.length; i++) {
+    for (j = i + 1; j <= str.length; j++) {
+      substrings.push(str.slice(i, j));
+    }
+  }
+  return substrings;
+};
+// console.log(printAllSubstrings("abc"));
 
+//!24 Valid palindrome (ignore spaces/special chars)
+const validPalindrome = (str) => {
+  let string = str
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]/g, "");
+  let reversdStr = string.split("").reverse().join("");
+  return string === reversdStr;
+};
+// console.log(validPalindrome("A Man, a plan, a canal: Panama"));
 
-// Valid palindrome (ignore spaces/special chars)
+//!25 Most frequent character in a string.
+const mostFreqChar = (str) => {
+  let frequency = {};
+  let maxChar = "";
+  let maxCount = 0;
+  for (let char of str) frequency[char] = (frequency[char] || 0) + 1;
+  for (let char of str) {
+    if (frequency[char] > maxCount) {
+      maxChar = char;
+      maxCount = frequency[char];
+    }
+  }
 
-// Most frequent character in a string
+  return {
+    character: maxChar,
+    frequency: maxCount,
+  };
+};
+// console.log(mostFreqChar("Vikasass"));
 
-// Find uncommon characters between two strings
+//!26 Find uncommon characters between two strings
+const findUncommonChars = (str1, str2) => {
+  let uncommonChars = [];
+  for (let char of str1) if (!str2.includes(char)) uncommonChars.push(char);
+  for (let char of str2) if (!str1.includes(char)) uncommonChars.push(char);
+  return uncommonChars;
+};
+// console.log(findUncommonChars("vikas", "virat"));
 
-// Sort characters alphabetically
+//!27 Sort characters alphabetically
+const sortCharsAlphabeticallySort = (str) => str.split("").sort().join("");
+// console.log(sortCharsAlphabeticallySort("golu"));
 
-// Swap case of each character (upper/lower)
+const sortCharsAlphabetically = (str) => {
+  let arr = str.split("");
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+    }
+  }
+  return arr.join("");
+};
+// console.log(sortCharsAlphabetically("vikas"));
 
-// Reverse only vowels in a string
+//!28 Swap case of each character (upper/lower)
+const swapCaseOfEachChar = (str) => {
+  let result = "";
+  for (let char of str) {
+    result +=
+      char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase();
+  }
+  return result;
+};
+// console.log(swapCaseOfEachChar("abcdeWXYZ"));
 
-// 🚀 Extra Coverage (If Time Allows, Product Companies Ask These)
+//!29 Reverse only vowels in a string
+const reverseVowels = (str) => {};
+// console.log(reverseVowels("abohulgsi"));
 
-// Longest substring without repeating characters
+//!30 Remove all vowels from a string
+const removeVowels = (str) => {
+  let result = "";
+  let vowels = "aeiouAEIOU";
+  for (let char of str) if (!vowels.includes(char)) result += char;
+  return result;
+};
+// console.log(removeVowels("Vikas Mewara"));
 
-// Longest palindromic substring
+//!31.Find the largest and smallest word in a string.
+const largestSmallestWord = (str) => {
+  let strArr = str.trim().split(" ");
+  let largestWord = strArr[0];
+  let smallestWord = strArr[0];
+  for (let word of strArr) {
+    if (word.length > largestWord.length) largestWord = word;
+    if (word.length < smallestWord.length) smallestWord = word;
+  }
+  return {
+    LargestWord: largestWord,
+    SmallestWord: smallestWord,
+  };
+};
+// console.log(largestSmallestWord("find the largest and smallest word"));
 
-// Minimum deletions to make two strings equal
+//!32 Find the ASCII value of each character in a string.
+const asciiValueOfChar = (str) => {
+  let value = {};
+  for (let char of str) {
+    value[char] = char.charCodeAt(0);
+  }
+  return value;
+};
+// console.log(asciiValueOfChar("vikas"));
 
-// Add binary strings
+//!33 Remove characters from a string except alphabets
+const removeChars = (str) => str.replace(/[^A-Za-z]/g, "");
+// console.log(removeChars("vi@k#$a*(s"));
 
-// Multiply two numbers in string form
+//!34 Remove brackets from an algebraic expression
+const removeBrackets = (str) => str.replace(/[()]/g, "");
+// console.log(removeBrackets("me((w)a)r(a"));
 
-// Excel sheet column title ↔ number conversion
+//!35 Sum of the numbers in a String.
+const sumOfNumsInStr = (str) => {
+  let sum = 0;
+  for (let char of str) sum += Number(char);
+  return sum;
+};
+// console.log(sumOfNumsInStr("1256789"));
 
-// Smallest window containing all characters
+//!36 Change every letter with the next lexicographic alphabet in the given string
+const changeLetterToNext = (str) => {
+  let result = "";
+  for (let char of str) {
+    let code = char.charCodeAt(0);
+    if (char >= "a" && "z" >= char) {
+      result += char === "z" ? "a" : String.fromCharCode(code + 1);
+    }
+    if (char >= "A" && "Z" >= char) {
+      result += char === "Z" ? "A" : String.fromCharCode(code + 1);
+    }
+  }
+  return result;
+};
+// console.log(changeLetterToNext("Uhjzr"));
 
-// Longest substring with K unique characters
-
-// Group anagrams together
-
-// Interleaved strings check
-
-// Edit Distance (Levenshtein distance)
-
-// Longest valid parenthesis substring🔥 Must Prepare (Most Asked for Freshers)
+//! Longest valid parenthesis substring🔥 Must Prepare (Most Asked for Freshers)
 
 // Palindrome Check
-
 // Reverse a String
-
 // Reverse words in a string
-
 // Check if two strings are Anagrams
-
 // Check for Rotation of strings
-
 // First Non-Repeating Character
-
 // Longest Common Prefix
-
 // Count vowels and consonants
-
 // Remove duplicates from a string
-
 // Frequency count of characters
 
 // ✅ Medium Level (Often Asked in Service-Based Interviews)
-
 // Implement Atoi (string → integer)
-
 // Roman Number → Integer
-
 // Integer → Roman
-
 // Find largest word in a sentence
-
 // First repeating character in a string
-
 // Check if a string contains only digits
-
-// Count words in a sentence
-
+// Count words in a sentence\
 // Capitalize the first letter of each word
-
 // Check if two strings are isomorphic
-
 // Pangram Checking
 
 // 📖 Additional Good-to-Know (Some Companies Ask)
-
 // Replace all spaces with %20 (URLify)
-
+// Remove all vowels from a string
+// Length of the longest word in a sentence
+// Print all substrings of a string
+// Valid palindrome (ignore spaces/special chars)
+// Most frequent character in a string
+// Find uncommon characters between two strings
+// Sort characters alphabetically
+// Swap case of each character (upper/lower)
+// Reverse only vowels in a string
+// Reverse only vowels in a string
+// Find the ASCII value of each character in a string.
+// Find the largest and smallest word in a string.
 // Remove all vowels from a string
 
-// Length of the longest word in a sentence
-
-// Print all substrings of a string
-
-// Valid palindrome (ignore spaces/special chars)
-
-// Most frequent character in a string
-
-// Find uncommon characters between two strings
-
-// Sort characters alphabetically
-
-// Swap case of each character (upper/lower)
-
-// Reverse only vowels in a string
-
 // 🚀 Extra Coverage (If Time Allows, Product Companies Ask These)
-
 // Longest substring without repeating characters
-
 // Longest palindromic substring
-
 // Minimum deletions to make two strings equal
-
 // Add binary strings
-
 // Multiply two numbers in string form
-
 // Excel sheet column title ↔ number conversion
-
 // Smallest window containing all characters
-
 // Longest substring with K unique characters
-
 // Group anagrams together
-
 // Interleaved strings check
-
 // Edit Distance (Levenshtein distance)
-
 // Longest valid parenthesis substring
