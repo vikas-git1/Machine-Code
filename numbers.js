@@ -288,7 +288,131 @@ const printArmstrongNumsInRange = (start, end) => {
 };
 // console.log(printArmstrongNumsInRange(10, 2000));
 
-//!23 Perform prime factorization
+//!23 Check if a number is Harshad (Niven number).
+const isHarshadNum = (num) => {
+  let original = num;
+  let sum = 0;
+  while (num > 0) {
+    let digit = num % 10;
+    sum += digit;
+    num = Math.floor(num / 10);
+  }
+  return original % sum === 0 ? true : false;
+};
+// console.log(isHarshadNum(18));
+
+const isHarshadNumber = (num) => {
+  let sum = 0;
+  let numStr = num.toString();
+  for (let char of numStr) {
+    sum += Number(char);
+  }
+  return num % sum === 0 ? true : false;
+};
+// console.log(isHarshadNumber(21));
+
+//!24 Convert decimal to binary
+const convertDecimalToBinary = (num) => {
+  let binary = "";
+  while (num > 0) {
+    binary = (num % 2) + binary;
+    num = Math.floor(num / 2);
+  }
+  return binary;
+};
+// console.log(convertDecimalToBinary(578));
+
+//!25 Convert binary to decimal
+//!26 Find sum of first N natural numbers
+const sumOffirstNnaturalNums = (n) => {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) sum += i;
+  return sum;
+};
+// console.log(sumOffirstNnaturalNums(23));
+
+//!27 Find the largest of three numbers.
+const findLargestOfThreeNums = (num1, num2, num3) => {
+  let largestNum = num1;
+  if (largestNum < num2) largestNum = num2;
+  if (largestNum < num3) largestNum = num3;
+  return largestNum;
+};
+// console.log(findLargestOfThreeNums(30, 170, 12));
+
+//!28 Check if two numbers are coprime (GCD is 1).
+const gcdOfNum = (num1, num2) => {
+  let gcd = 1;
+  for (let i = 1; i <= Math.min(num1, num2); i++) {
+    if (num1 % i === 0 && num2 % i === 0) gcd = i;
+  }
+  return gcd;
+};
+
+const checkCoPrimeNums = (num1, num2) => {
+  if (gcdOfNum(num1, num2) === 1) return true;
+  return false;
+};
+// console.log(checkCoPrimeNums(14, 29));
+
+//!29 Check if a number is a power of two.
+const isPowerOfTwo = (num) => {
+  for (let i = 1; i <= num; i++) {
+    if (Math.pow(2, i) === num) return true;
+  }
+  return false;
+};
+// console.log(isPowerOfTwo(16));
+
+//!30 Find the product of digits of a number.
+const productOfDigits = (num) => {
+  let product = 1;
+  while (num > 0) {
+    let digit = num % 10;
+    product *= digit;
+    num = Math.floor(num / 10);
+  }
+  return `The product of digits of the the given number is ${product}`;
+};
+// console.log(productOfDigits(1234));
+
+const productOfDigitsOfNum = (num) => {
+  let numStr = num.toString();
+  let product = 1;
+  for (let char of numStr) {
+    product *= Number(char);
+  }
+  return product;
+};
+// console.log(productOfDigitsOfNum(567));
+
+//!31 Find the sum of squares of digits of a number.
+const sumOfSquaresOfDigits = (num) => {
+  let sum = 0;
+  while (num > 0) {
+    let digit = num % 10;
+    sum += digit * digit;
+    num = Math.floor(num / 10);
+  }
+  return sum;
+};
+// console.log(sumOfSquaresOfDigits(234));
+
+const sumOfSquareOfDigits = (num) =>
+  num
+    .toString()
+    .split("")
+    .reduce((sum, digit) => (sum += digit ** 2), 0);
+
+// console.log(sumOfSquareOfDigits(1234));
+
+//!32 Check if a number is an automorphic number (square ends with same digits as number).
+const isAutomorphicNum = (num) => String(num * num).endsWith(num);
+// console.log(isAutomorphicNum(5));
+
+//!33 Find the nth prime number.
+
+// !23 Perform prime factorization
 
 // 🔥 Must Prepare (Absolutely Core)
 // Check if a number is prime
